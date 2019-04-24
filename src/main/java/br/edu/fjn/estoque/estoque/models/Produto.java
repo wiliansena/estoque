@@ -20,7 +20,6 @@ public class Produto implements Serializable {
 	private String observacao;
 	private String categoria;
 
-
 	public long getCodigo() {
 		return codigo;
 	}
@@ -37,8 +36,6 @@ public class Produto implements Serializable {
 		this.nome = nome;
 	}
 
-
-
 	public Date getDataCadastro() {
 		return dataCadastro;
 	}
@@ -51,7 +48,6 @@ public class Produto implements Serializable {
 		this.observacao = observacao;
 	}
 
-
 	public String getObservacao() {
 		return observacao;
 	}
@@ -63,6 +59,5 @@ public class Produto implements Serializable {
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
-	
 
 }

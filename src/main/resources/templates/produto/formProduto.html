@@ -1,38 +1,110 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-<title>DemoApp</title>
-<meta charset="utf-8">
-<!--Import Google Icon Font-->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet" />
-<!--Import materialize.css-->
-<link type="text/css" rel="stylesheet"
-	href="materialize/css/materialize.min.css" media="screen,projection" />
+<html
+  xmlns:th="http://thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+  <head>
+    <title>DemoApp</title>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="semantic/dist/semantic.min.css"
+    />
 
-<!--Let browser know website is optimized for mobile-->
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</head>
-<body>
-	<h1>Estoque FJN</h1>
-	<h3>
-		<a href="/produtos" class="waves-effect waves-light btn"><i
-			class="material-icons left">format_list_bulleted</i>Lista de Produtos</a>
-	</h3>
-	<form class="container" method="post">
-		Nome: <input type="text" value="" name="nome" /> <br /> 
-		
-		Data de cadastro: <input
-			type="date" value="" name="dataCadastro" /> <br /> 
-		Observação: <input
-			type="text" value="" name="observacao" /> <br /> 
-		Categoria: <input
-			type="text" value="" name="categoria" /> <br /> 
-			
-		<button class="waves-effect waves-light bnt" type="submit">Salvar</button>
-	</form>
-		<!--JavaScript at end of body for optimized loading-->
-	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
-</body>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div class="ui container">
+      <form class="ui form " id="form" method="POST">
+        <h2 class="ui dividing header">Cadastro do Produto</h2>
+        <div class=" fields">
+          <div class="seven wide field">
+            <label> Produto </label>
+            <input name="nome" id="nome" type="text" />
+          </div>
+
+          <div class="five wide field">
+            <label class="large activating element">
+              Categoria
+              <i class="add icon "></i>
+            </label>
+            <div class="ui selection dropdown">
+              <input type="hidden" name="categoria" id="categoria" />
+              <i class="dropdown icon"></i>
+              <div class="default text">Categoria</div>
+              <div class="menu">
+                <div class="item" data-value="1" data-text="1">
+                  1
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class=" four wide field">
+            <label>Data</label>
+            <input type="date" name="dataCadastro" id="dataCadastro" disabled/>
+          </div>
+        </div>
+        <div class="field">
+          <label for="">Observações</label>
+          <textarea name="observacao" rows="6"></textarea>
+        </div>
+        <div class="ui error message"></div>
+        <button
+          type="submit"
+          id="btnCadastrar"
+          class="ui blue submit button"
+          onclick="modal()"
+        >
+          Cadastrar
+        </button>
+      </form>
+
+      <div class="ui modal">
+        <i class="close icon"></i>
+        <div class="header">
+          <p class="msgModal">
+            Produto Cadastrado com Sucesso
+          </p>
+        </div>
+
+        <div class="actions">
+          <div
+            class="ui positive right labeled icon button"
+            onclick="submitForm()"
+          >
+            Voltar
+            <i class="checkmark icon"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="ui flowing popup top left transition hidden"
+      style="width: 350px;"
+    >
+      <div class="segment">
+        <form class="ui form" action="">
+          <div class="field">
+            <title></title>
+            <label for=""
+              >Não encontrou uma categoria na opções? Adicione uma</label
+            >
+            <input type="text" />
+          </div>
+          <button class="ui primary button" type="submit">Adicionar</button>
+        </form>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"
+    ></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+    <script type="text/javascript" src="/js/Cadastro.js"></script>
+  </body>
 </html>
