@@ -1,6 +1,19 @@
 $(function() {
   $(".ui.form").form({
     nome: {
+      identifier: "input.nome",
+      rules: [{ type: "empty", prompt: "Por favor preencha o campo Produto " }]
+    },
+    categoria: {
+      identifier: "input.categoria",
+      rules: [{ type: "empty", prompt: "Selecione uma categoria" }]
+    },
+
+    dataCadastro: {
+      identifier: "input.dataCadastro",
+      rules: [{ type: "empty", prompt: "Por favor preencha o campo Data" }]
+    },
+    nome: {
       identifier: "nome",
       rules: [{ type: "empty", prompt: "Por favor preencha o campo Produto " }]
     },
@@ -22,6 +35,17 @@ $(function() {
   });
 
   $(".ui.dropdown").dropdown();
+
+  $("#form").submit(function(){
+    $.ajax({
+        type:"POST",
+        data:$("#form").serialize(),
+        success:function(response) {
+          $('#formProduto').html(response);
+        }
+    })
+  })
+return false;
 });
 
 const modal = () => {

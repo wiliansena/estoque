@@ -11,94 +11,129 @@
       type="text/css"
       href="semantic/dist/semantic.min.css"
     />
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
+    <link rel="stylesheet" th:href="@{/css/formProduto.css}" />
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <div class="ui container">
-      <form class="ui form " id="form" method="POST">
-        <h2 class="ui dividing header">Cadastro do Produto</h2>
-        <div class=" fields">
-          <div class="seven wide field">
-            <label> Produto </label>
-            <input name="nome" id="nome" type="text" />
-          </div>
+    <header>
+      <div class="ui massive secondary menu" id="nav-principal">
+        <a class="item">
+          Página Inicial
+        </a>
 
-          <div class="five wide field">
-            <label class="large activating element">
-              Categoria
-              <i class="add icon "></i>
-            </label>
-            <div class="ui selection dropdown">
-              <input type="hidden" name="categoria" id="categoria" />
-              <i class="dropdown icon"></i>
-              <div class="default text">Categoria</div>
-              <div class="menu">
-                <div class="item" data-value="1" data-text="1">
-                  1
+        <a class="item" href="/cadastrarProduto">
+          Cadastrar produtos
+        </a>
+
+        <a class="item" href="/produtos">
+          Listar Produtos
+        </a>
+
+        <a class="ui item">
+          Ajuda
+        </a>
+
+        <div class="right menu">
+          <a class="ui item">
+            Usuário
+          </a>
+        </div>
+      </div>
+    </header>
+    <section>
+      <div class="ui container">
+        <form class="ui form " id="form" method="POST">
+          <h2 class="ui dividing header">Cadastro do Produto</h2>
+          <div class=" fields">
+            <div class="seven wide field">
+              <label> Produto </label>
+              <input name="nome" id="nome" type="text" />
+            </div>
+
+            <div class="five wide field">
+              <label class="large activating element">
+                Categoria
+                <i class="add icon "></i>
+              </label>
+              <div class="ui selection dropdown">
+                <input type="hidden" name="categoria" id="categoria" />
+                <i class="dropdown icon"></i>
+                <div class="default text">Categoria</div>
+                <div class="menu">
+                  <div class="item" data-value="1" data-text="1">
+                    1
+                  </div>
                 </div>
               </div>
             </div>
+
+            <div class=" four wide field">
+              <label>Data</label>
+              <input
+                type="date"
+                name="dataCadastro"
+                id="dataCadastro"
+                disabled
+              />
+            </div>
           </div>
-
-          <div class=" four wide field">
-            <label>Data</label>
-            <input type="date" name="dataCadastro" id="dataCadastro" disabled/>
-          </div>
-        </div>
-        <div class="field">
-          <label for="">Observações</label>
-          <textarea name="observacao" rows="6"></textarea>
-        </div>
-        <div class="ui error message"></div>
-        <button
-          type="submit"
-          id="btnCadastrar"
-          class="ui blue submit button"
-          onclick="modal()"
-        >
-          Cadastrar
-        </button>
-      </form>
-
-      <div class="ui modal">
-        <i class="close icon"></i>
-        <div class="header">
-          <p class="msgModal">
-            Produto Cadastrado com Sucesso
-          </p>
-        </div>
-
-        <div class="actions">
-          <div
-            class="ui positive right labeled icon button"
-            onclick="submitForm()"
-          >
-            Voltar
-            <i class="checkmark icon"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="ui flowing popup top left transition hidden"
-      style="width: 350px;"
-    >
-      <div class="segment">
-        <form class="ui form" action="">
           <div class="field">
-            <title></title>
-            <label for=""
-              >Não encontrou uma categoria na opções? Adicione uma</label
-            >
-            <input type="text" />
+            <label for="">Observações</label>
+            <textarea name="observacao" rows="6"></textarea>
           </div>
-          <button class="ui primary button" type="submit">Adicionar</button>
+          <div class="ui error message"></div>
+          <button
+            type="submit"
+            id="btnCadastrar"
+            class="ui blue submit button"
+            onclick="modal()"
+          >
+            Cadastrar
+          </button>
         </form>
+
+        <div class="ui modal">
+          <i class="close icon"></i>
+          <div class="header">
+            <p class="msgModal">
+              Produto Cadastrado com Sucesso
+            </p>
+          </div>
+
+          <div class="actions">
+            <div
+              class="ui positive right labeled icon button"
+              onclick="submitForm()"
+            >
+              Voltar
+              <i class="checkmark icon"></i>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+
+      <div
+        class="ui flowing popup top left transition hidden"
+        style="width: 350px;"
+      >
+        <div class="segment">
+          <form class="ui form" action="">
+            <div class="field">
+              <title></title>
+              <label for=""
+                >Não encontrou uma categoria na opções? Adicione uma</label
+              >
+              <input type="text" />
+            </div>
+            <button class="ui primary button" type="submit">Adicionar</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
     <script
       src="https://code.jquery.com/jquery-3.1.1.min.js"
       integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
