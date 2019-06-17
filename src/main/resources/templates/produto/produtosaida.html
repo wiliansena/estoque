@@ -1,0 +1,62 @@
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<title>Estoque FJN</title>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet"
+	href="materialize/css/materialize.min.css" media="screen,projection" />
+
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+</head>
+<body>
+	<h1>Produto</h1>
+	<h3>
+		<a href="/produtosaida" class="waves-effect waves-light btn"><i
+			class="material-icons left">format_list_bulleted</i>Lista de Produtos DAR BAIXA</a>
+	</h3>
+	<div th:each="produto: ${produto}" class="container" >
+	<div class="row">
+	<p><b>CODIGO: </b><br><span th:text="${produto.codigo}"></span></p>
+	<p><b>NOME: </b><br><span th:text="${produto.nome}"></span></p>
+	<p><b>DATA DE CADASTRO: </b><br><span th:text="${produto.dataCadastro}"></span></p>
+	<p><b>OBSERVAÇÃO: </b><br><span th:text="${produto.observacao}"></span></p>
+	<p><b>CATEGORIA: </b><br><span th:text="${produto.categoria}"></span></p>
+
+<h1>Cadastrar Saida de material: </h1>	
+	<form method="post">
+
+Funcionario Solicitante: <input type="text" value="" name="funcionario_solicitante">
+<br/>
+<br/>
+Setor Solicitante: <input type="text" value="" name="setor">
+<br/>
+<br/>
+<br/>
+<button class="waves-effect waves-light btn" type="submit" >Baixar</button>
+</form>
+	</div>
+	<h2 style="color:FF0000">Lista de Saida de material do Estoque</h2>
+<div class="container" th:each="saidamaterial: ${saidamaterial}" >
+ <h3 style="color:0000FF">-->Saida Cadastrada</h3>
+	<div class="row">
+		<div class="input-field col s6">
+<p><b>Código da Saida</b> (<span th:text="${saidamaterial.codigosaida}" ></span>)<p/>
+		</div>
+			<div class="input-field col s3">
+<p> <b>Funcionário Solicitante:</b> (<span th:text="${saidamaterial.funcionario_solicitante}" ></span>)<p/>
+			</div>
+<p> <b>Setor Solicitante:</b>  (<span th:text="${saidamaterial.setor}" ></span>)<p/>
+</div>
+</div>
+</div>
+
+	<!--JavaScript at end of body for optimized loading-->
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</body>
+</html>

@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.edu.fjn.estoque.estoque.models.EntradaMaterial;
 import br.edu.fjn.estoque.estoque.models.Produto;
+import br.edu.fjn.estoque.estoque.repository.EntradaMaterialRepository;
 import br.edu.fjn.estoque.estoque.repository.ProdutoRepository;
 
 
@@ -18,6 +20,11 @@ public class ProdutoController {
 	//injeção de dependência da interface produtoRepository
 	@Autowired
 	private ProdutoRepository er;
+	
+	//injeção de dependência da interface EntradaMaterialRepository
+	@Autowired
+	private EntradaMaterialRepository emr;
+
 	
 	
 	//cadastro de produto
@@ -40,15 +47,29 @@ public class ProdutoController {
 		return mv;
 	}
 
-   //Buscar um produto.
+   //Buscar um produto e cadastrar uma entrada no estoque
 	@RequestMapping(value="produto/{codigo}", method=RequestMethod.GET )
 	public ModelAndView buscarProduto(@PathVariable("codigo") long codigo) {
 		Produto produto = er.findByCodigo(codigo);
 		ModelAndView mv = new ModelAndView("produto/buscarProduto");
 		mv.addObject("produto", produto);
+		
+		Iterable<EntradaMaterial> entradasmaterial = emr.findByProduto(produto);
+		mv.addObject("entradasmaterial", entradasmaterial);
 		return mv;
+	}
+	
+	@RequestMapping(value="produto/{codigo}", method=RequestMethod.POST )
+	public String buscarProdutoEntrada(@PathVariable("codigo") long codigo, EntradaMaterial entradamaterial) {
+		Produto produto = er.findByCodigo(codigo);
+		entradamaterial.setProduto(produto);
+		emr.save(entradamaterial);
+		return "redirect:/{codigo}";
 		
 	}
+	
+		
+	
 	
 	//deletar um produto.
 	@RequestMapping("/deletar")
@@ -66,5 +87,7 @@ public class ProdutoController {
 		mv.addObject("produto", produto);
 		return mv;
 	}
+	
+	
 	
 }

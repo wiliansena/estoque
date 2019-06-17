@@ -2,11 +2,13 @@ package br.edu.fjn.estoque.estoque.models;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Produto implements Serializable {
@@ -19,6 +21,16 @@ public class Produto implements Serializable {
 	private Date dataCadastro;
 	private String observacao;
 	private String categoria;
+	
+	//listar as entradas no produto.
+	@OneToMany
+	private List<EntradaMaterial> entradasmaterial;
+	
+	//listar as saidas no produto.
+	@OneToMany
+	private List<SaidaMaterial> saidamaterial;
+	
+
 
 	public long getCodigo() {
 		return codigo;
