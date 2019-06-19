@@ -37,6 +37,7 @@ Funcionario Solicitante: <input type="text" value="" name="funcionario_solicitan
 Setor Solicitante: <input type="text" value="" name="setor">
 <br/>
 <br/>
+Quantidade: <input type="text" value="" name="qtde">
 <br/>
 <button class="waves-effect waves-light btn" type="submit" >Baixar</button>
 </form>
@@ -52,7 +53,9 @@ Setor Solicitante: <input type="text" value="" name="setor">
 <p> <b>Funcionário Solicitante:</b> (<span th:text="${saidamaterial.funcionario_solicitante}" ></span>)<p/>
 			</div>
 <p> <b>Setor Solicitante:</b>  (<span th:text="${saidamaterial.setor}" ></span>)<p/>
+
 </div>
+<p> <b>Quantidade:</b>  (<span th:text="${saidamaterial.qtde}" ></span>)<p/>
 </div>
 </div>
 

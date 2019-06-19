@@ -33,7 +33,7 @@ public class SaidaMaterialController {
 	@RequestMapping(value = "/cadastrarSaidaMaterial", method = RequestMethod.POST)
 	public String form(SaidaMaterial saidamaterial) {
 		smr.save(saidamaterial);
-		return "redirect:cadastrarSaidaMaterial";
+		return "redirect:produtosaida/{codigo}";
 	}
 
 	
@@ -52,18 +52,19 @@ public class SaidaMaterialController {
 			Produto produto = er.findByCodigo(codigo);
 			ModelAndView mv = new ModelAndView("produto/produtosaida");
 			mv.addObject("produto", produto);
-			Iterable<SaidaMaterial> saidasmaterial = smr.findByProduto(produto);
-			mv.addObject("saidasmaterial", saidasmaterial);
+			
+			Iterable<SaidaMaterial> saidamaterial = smr.findByProduto(produto);
+			mv.addObject("saidamaterial", saidamaterial);
 			return mv;
 		}
 		
 		//listar as saidas do produto buscado
-	@RequestMapping(value="produtosaida/{codigo}", method=RequestMethod.POST )
+	@RequestMapping(value="/{codigo}", method=RequestMethod.POST )
 	public String buscarProdutoSaidaPost(@PathVariable("codigo") long codigo, SaidaMaterial saidamaterial) {
 		Produto produto = er.findByCodigo(codigo);
 		saidamaterial.setProduto(produto);
 		smr.save(saidamaterial);
-		return "redirect:SaidaMaterial";
+		return "redirect:produtosaida/{codigo}";
 		
 	}
 }

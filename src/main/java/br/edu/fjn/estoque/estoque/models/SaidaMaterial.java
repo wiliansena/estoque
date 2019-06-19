@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class SaidaMaterial {
@@ -12,8 +14,17 @@ public class SaidaMaterial {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long codigosaida;
+	
+	@NotBlank
+	@NotNull
 	private String funcionario_solicitante;
+	
+	@NotBlank
+	@NotNull
 	private String setor;
+	
+	@NotNull
+	private int qtde;
 	
 	
 	@ManyToOne
@@ -43,6 +54,12 @@ public class SaidaMaterial {
 	}
 	public void setSetor(String setor) {
 		this.setor = setor;
+	}
+	public int getQtde() {
+		return qtde;
+	}
+	public void setQtde(int qtde) {
+		this.qtde = qtde;
 	}
 	
 	

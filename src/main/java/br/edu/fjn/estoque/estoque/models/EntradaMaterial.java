@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -16,10 +17,20 @@ public class EntradaMaterial{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long codigo;
+	
+	@NotNull
 	private int qtde;
+	
+	@NotNull
 	private Date dataCompra;
+	
+	@NotNull
 	private String fornecedor;
+	
+	@NotNull
 	private String responsavelCompra;
+	
+	@NotNull
 	private String responsavelVenda;
 	
 	

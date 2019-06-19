@@ -3,30 +3,43 @@ package br.edu.fjn.estoque.estoque.models;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"nome"})})
 public class Produto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long codigo;
+	
+	@NotBlank
 	private String nome;
+	
 	private Date dataCadastro;
+	
+	@Size(max=50)
 	private String observacao;
+	
+	@NotNull
 	private String categoria;
 	
-	//listar as entradas no produto.
+		//listar as entradas no produto.
 	@OneToMany
 	private List<EntradaMaterial> entradasmaterial;
 	
-	//listar as saidas no produto.
+		//listar as saidas no produto.
 	@OneToMany
 	private List<SaidaMaterial> saidamaterial;
 	
