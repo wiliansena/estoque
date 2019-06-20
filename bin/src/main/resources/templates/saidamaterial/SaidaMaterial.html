@@ -13,15 +13,13 @@
       <link rel="stylesheet" href="style/styleCss.css"/>
 </head>
 <body>
-	<h1>Entrada de Material no estoque</h1>
-	<h3><a href="/cadastrarEntradaMaterial" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar evento</a></h3>
-<div th:each="entradamaterial : ${entradamaterial}" class="container" >
+	<h3><a href="/produtosaida" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Listar Produtos</a></h3>
+<div th:each="saidamaterial : ${saidamaterial}" class="container" >
 <div class="row" >
-	<p>Quantidade: <span th:text="${entradamaterial.qtde}"></span></p>
-	<p>Data da compra: <span th:text="${entradamaterial.dataCompra}"></span></p>
-	<p>Fornecedor: <span th:text="${entradamaterial.fornecedor}"></span></p>
-	<p>Responsável compra: <span th:text="${entradamaterial.responsavelCompra}"></span></p>
-	<p>Responsável Venda:  <span th:text="${entradamaterial.responsavelVenda}"></span></p>
+	<p>Funcionário Solicitante: <span th:text="${saidamaterial.funcionario_solicitante}"></span></p>
+	<p>Setor Solicitante: <span th:text="${saidamaterial.setor}"></span></p>
+	<p>Quantidade: <span th:text="${saidamaterial.qtde}"></span></p>
+	
 </div>
 <form method="post">
 <input type="text" value="" name="nome">

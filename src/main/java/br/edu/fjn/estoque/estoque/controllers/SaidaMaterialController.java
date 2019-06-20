@@ -1,5 +1,7 @@
 package br.edu.fjn.estoque.estoque.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,7 +33,7 @@ public class SaidaMaterialController {
 	}
 
 	@RequestMapping(value = "/cadastrarSaidaMaterial", method = RequestMethod.POST)
-	public String form(SaidaMaterial saidamaterial) {
+	public String form(@Valid SaidaMaterial saidamaterial) {
 		smr.save(saidamaterial);
 		return "redirect:produtosaida/{codigo}";
 	}
@@ -59,12 +61,12 @@ public class SaidaMaterialController {
 		}
 		
 		//listar as saidas do produto buscado
-	@RequestMapping(value="/{codigo}", method=RequestMethod.POST )
+	@RequestMapping(value="produtosaida/{codigo}", method=RequestMethod.POST )
 	public String buscarProdutoSaidaPost(@PathVariable("codigo") long codigo, SaidaMaterial saidamaterial) {
 		Produto produto = er.findByCodigo(codigo);
 		saidamaterial.setProduto(produto);
 		smr.save(saidamaterial);
-		return "redirect:produtosaida/{codigo}";
+		return "redirect:/{codigo}";
 		
 	}
 }

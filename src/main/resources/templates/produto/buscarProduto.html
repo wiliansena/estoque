@@ -51,7 +51,7 @@ Responsável Venda: <input type="text" value="" name="responsavelVenda">
 	<h2 style="color:FF0000">Lista de Entradas de material no Estoque</h2>
 <div class="container" th:each="entradamaterial: ${entradasmaterial}" >
  <h3 style="color:0000FF">-->Entrada Cadastrada</h3>
- <p>Código da Entrada :<b><span th:text="${entradamaterial.codigo}" ></span></p></b>
+ <p>Código da Entrada :<b><span th:text="${entradamaterial.codigo}" ></span></b></p>
 	<div class="row">
 	<table border="1">
 	<thead>
@@ -77,6 +77,7 @@ Responsável Venda: <input type="text" value="" name="responsavelVenda">
 </table>
 
 
+</div>
 </div>
 </div>
 	<!--JavaScript at end of body for optimized loading-->

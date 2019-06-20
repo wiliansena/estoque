@@ -61,12 +61,12 @@ public class ProdutoController {
 		return mv;
 	}
 	
-	@RequestMapping(value="produtos/{codigo}", method=RequestMethod.POST )
+	@RequestMapping(value="produto/{codigo}", method=RequestMethod.POST )
 	public String buscarProdutoEntrada(@PathVariable("codigo") long codigo, EntradaMaterial entradamaterial) {
 		Produto produto = er.findByCodigo(codigo);
 		entradamaterial.setProduto(produto);
 		emr.save(entradamaterial);
-		return "redirect:/{codigo}";
+		return "redirect:produto/{codigo}";
 		
 	}
 	
