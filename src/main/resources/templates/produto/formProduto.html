@@ -12,10 +12,42 @@
       href="semantic/dist/semantic.min.css"
     />
 
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
+    <link rel="stylesheet" th:href="@{/css/formProduto.css}" />
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
+
+      <header>
+          <div class="ui massive secondary menu" id="nav-principal">
+            <a class="item" href="/">
+            Página Inicial
+            </a>
+            <a class="item" href="/cadastrarProduto">
+            Cadastrar produtos
+            </a>
+        
+            <a class="item" href="/produtos">
+            Listar Produtos
+            </a>
+        
+            <a class="ui item">
+            Ajuda
+            </a>
+      
+            <a class="ui item" href="">
+            Saida de Produtos
+            </a>
+        
+            <div class="right menu">
+            <a class="ui item">
+              Usuário
+            </a>
+            </div>
+          </div>
+          </header>
+
     <div class="ui container">
       <form class="ui form " id="form" method="POST">
         <h2 class="ui dividing header">Cadastro do Produto</h2>

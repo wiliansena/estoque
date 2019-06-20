@@ -1,86 +1,228 @@
-<html xmlns:th="http://thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <head>
-<title>Estoque FJN</title>
-<!--Import Google Icon Font-->
+	<title>Estoque FJN</title>
+
+
+	<link rel="stylesheet" th:href="@{/css/home.css}" />
+	<link rel="stylesheet" th:href="@{/css/index.css}" />
+    <link rel="stylesheet" th:href="@{/csss/produtoList.css}" />
+
+	<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css"
+		th:href="@{/semantic/dist/semantic.min.css}" />
+
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet" />
-<!--Import materialize.css-->
+
 <link type="text/css" rel="stylesheet"
 	href="materialize/css/materialize.min.css" media="screen,projection" />
 
-<!--Let browser know website is optimized for mobile-->
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-->
 
 </head>
+
+<header>
+	<div class="ui massive secondary menu" id="nav-principal">
+		<a class="item" href="/">
+			Página Inicial
+		</a>
+		<a class="item" href="/cadastrarProduto">
+			Cadastrar produtos
+		</a>
+
+		<a class="item" href="/produtos">
+			Listar Produtos
+		</a>
+
+		<a class="ui item">
+			Ajuda
+		</a>
+
+		<a class="ui item" href="">
+			Saida de Produtos
+		</a>
+
+		<div class="right menu">
+			<a class="ui item">
+				Usuário
+			</a>
+		</div>
+	</div>
+</header>
+
+
+
 <body>
-	<h1>Produto</h1>
+
+	<section clas="produtoList">
+		<div class="ui container">
+			<h1>Produto</h1>
+			<div class="ui big relaxed divided list">
+				<div class="item">
+					<div class="content">
+						<a class="header">CÓDIGO</a>
+						<span class="description" th:text="${produto.codigo}"></span>
+					</div>
+				</div>
+				<div class="item">
+					<div class="content">
+						<a class="header">NOME</a>
+						<span th:text="${produto.nome}"></span>
+					</div>
+				</div>
+				<div class="item">
+					<div class="content">
+						<a class="header">DATA DE CADASTRO</a>
+						<span th:text="${produto.dataCadastro}"></span>
+					</div>
+				</div>
+				<div class="item">
+					<div class="content">
+						<a class="header">OBSERVAÇÃO</a>
+						<span th:text="${produto.observacao}"></span>
+					</div>
+				</div>
+				<div class="item">
+					<div class="content">
+						<a class="header">CATEGORIA</a>
+						<span th:text="${produto.categoria}"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+
+		<div class="ui container">
+				<form class="ui form " id="form" method="POST">
+						<h2 class="ui dividing header">Cadastrar entrada de Material</h2>
+						<div class=" fields">
+						  <div class="three wide field">
+							<label> Quantidade </label>
+							<input name="qtde" id="qtde" type="text" />
+						  </div>
+			
+						  <div class=" five wide field">
+								<label>Data</label>
+								<input type="date" name="dataCadastro" id="dataCadastro"/>
+						 </div>
+
+						 <div class="eight wide field">
+							<label>Fornecedor</label>
+							<input name="fornecedor" id="fornecedor" type="text" />
+						 </div>
+						 
+						</div>
+						<div class="fields">
+							<div class="eight wide field"> 
+                              <label>Responsavel Compra</label>
+                              <input name="responsavelCompra" id="responsavelCompra" type="text">
+							</div>
+							<div class="eight wide field"> 
+									<label>Responsavel Venda</label>
+									<input name="responsavelVenda" id="responsavelVenda" type="text">
+							</div>
+
+						 
+						</div>
+						<div class="ui error message"></div>
+						<button
+						  type="submit"
+						  id="btnCadastrar"
+						  class="ui blue submit button"
+						  onclick="modal()"
+						>
+						  Cadastrar
+						</button>
+					  </form>
+		</div>
+
+	</section>
+
+
+
 	<h3>
 		<a href="/produtos" class="waves-effect waves-light btn"><i
-			class="material-icons left">format_list_bulleted</i>Lista de Produtos</a>
+				class="material-icons left">format_list_bulleted</i>Lista de Produtos</a>
 	</h3>
-	<div th:each="produto: ${produto}" class="container" >
-	<div class="row">
-	<p><b>CODIGO: </b><br><span th:text="${produto.codigo}"></span></p>
-	<p><b>NOME: </b><br><span th:text="${produto.nome}"></span></p>
-	<p><b>DATA DE CADASTRO: </b><br><span th:text="${produto.dataCadastro}"></span></p>
-	<p><b>OBSERVAÇÃO: </b><br><span th:text="${produto.observacao}"></span></p>
-	<p><b>CATEGORIA: </b><br><span th:text="${produto.categoria}"></span></p>
 
-<h1>Cadastrar entrada de material: </h1>	
-	<form method="post">
 
-Quantidade: <input type="text" value="" name="qtde">
-<br/>
-<br/>
-Data de Compra: <input type="date" value="" name="dataCompra">
-<br/>
-<br/>
-Fornecedor: <input type="text" value="" name="fornecedor">
-<br/>
-<br/>
-Responsável Compra: <input type="text" value="" name="responsavelCompra">
-<br/>
-<br/>
-Responsável Venda: <input type="text" value="" name="responsavelVenda">
-<br/>
-<button class="waves-effect waves-light btn" type="submit" >Adicionar</button>
-</form>
+	<div th:each="produto: ${produto}" class="container">
+		<div class="row">
+			<p><b>CODIGO: </b><br><span th:text="${produto.codigo}"></span></p>
+			<p><b>NOME: </b><br><span th:text="${produto.nome}"></span></p>
+			<p><b>DATA DE CADASTRO: </b><br><span th:text="${produto.dataCadastro}"></span></p>
+			<p><b>OBSERVAÇÃO: </b><br><span th:text="${produto.observacao}"></span></p>
+			<p><b>CATEGORIA: </b><br><span th:text="${produto.categoria}"></span></p>
+
+			<h1>Cadastrar entrada de material: </h1>
+			<form method="post">
+
+				Quantidade: <input type="text" value="" name="qtde">
+				<br />
+				<br />
+				Data de Compra: <input type="date" value="" name="dataCompra">
+				<br />
+				<br />
+				Fornecedor: <input type="text" value="" name="fornecedor">
+				<br />
+				<br />
+				Responsável Compra: <input type="text" value="" name="responsavelCompra">
+				<br />
+				<br />
+				Responsável Venda: <input type="text" value="" name="responsavelVenda">
+				<br />
+				<button class="waves-effect waves-light btn" type="submit">Adicionar</button>
+			</form>
+		</div>
+		<h2 style="color:FF0000">Lista de Entradas de material no Estoque</h2>
+		<div class="container" th:each="entradamaterial: ${entradasmaterial}">
+			<h3 style="color:0000FF">-->Entrada Cadastrada</h3>
+			<p>Código da Entrada :<b><span th:text="${entradamaterial.codigo}"></span></b></p>
+			<div class="row">
+				<table border="1">
+					<thead>
+						<tr>
+							<th>Codigo</th>
+							<th>Quantidade</th>
+							<th>Fornecedor</th>
+							<th>Resp. Venda</th>
+							<th>Resp. Compra</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><span th:text="${entradamaterial.codigo}"></span></td>
+							<td><span th:text="${entradamaterial.qtde}"></span></td>
+							<td><span th:text="${entradamaterial.fornecedor}"></span></td>
+							<td><span th:text="${entradamaterial.responsavelVenda}"></span></td>
+							<td><span th:text="${entradamaterial.responsavelCompra}"></span></td>
+						</tr>
+
+					</tbody>
+
+				</table>
+
+
+			</div>
+		</div>
 	</div>
-	<h2 style="color:FF0000">Lista de Entradas de material no Estoque</h2>
-<div class="container" th:each="entradamaterial: ${entradasmaterial}" >
- <h3 style="color:0000FF">-->Entrada Cadastrada</h3>
- <p>Código da Entrada :<b><span th:text="${entradamaterial.codigo}" ></span></b></p>
-	<div class="row">
-	<table border="1">
-	<thead>
-        <tr>
-            <th>Codigo</th>
-            <th>Quantidade</th>
-            <th>Fornecedor</th>
-            <th>Resp. Venda</th>
-            <th>Resp. Compra</th>
-        </tr>
-    </thead>
-     <tbody>
-        <tr>
-            <td><span th:text="${entradamaterial.codigo}" ></span></td>
-            <td><span th:text="${entradamaterial.qtde}" ></span></td>
-            <td><span th:text="${entradamaterial.fornecedor}" ></span></td>
-            <td><span th:text="${entradamaterial.responsavelVenda}" ></span></td>
-            <td><span th:text="${entradamaterial.responsavelCompra}" ></span></td>
-        </tr>
-        
-    </tbody>
-
-</table>
-
-
-</div>
-</div>
-</div>
 	<!--JavaScript at end of body for optimized loading-->
+
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<script src="semantic/dist/semantic.min.js"></script>
+
+
+
 	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 </body>
+
 </html>

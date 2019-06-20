@@ -66,7 +66,7 @@ public class ProdutoController {
 		Produto produto = er.findByCodigo(codigo);
 		entradamaterial.setProduto(produto);
 		emr.save(entradamaterial);
-		return "redirect:produto/{codigo}";
+		return "redirect:/{codigo}";
 		
 	}
 	
