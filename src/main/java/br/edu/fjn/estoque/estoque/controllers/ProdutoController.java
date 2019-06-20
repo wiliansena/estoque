@@ -15,7 +15,6 @@ import br.edu.fjn.estoque.estoque.repository.EntradaMaterialRepository;
 import br.edu.fjn.estoque.estoque.repository.ProdutoRepository;
 
 
-
 @Controller
 public class ProdutoController {
 	
@@ -50,7 +49,7 @@ public class ProdutoController {
 	}
 
    //Buscar um produto e cadastrar uma entrada no estoque
-	@RequestMapping(value="produto/{codigo}", method=RequestMethod.GET )
+	@RequestMapping(value="/{codigo}", method=RequestMethod.GET )
 	public ModelAndView buscarProduto(@PathVariable("codigo") long codigo) {
 		Produto produto = er.findByCodigo(codigo);
 		ModelAndView mv = new ModelAndView("produto/buscarProduto");
@@ -61,7 +60,7 @@ public class ProdutoController {
 		return mv;
 	}
 	
-	@RequestMapping(value="produto/{codigo}", method=RequestMethod.POST )
+	@RequestMapping(value="/{codigo}", method=RequestMethod.POST )
 	public String buscarProdutoEntrada(@PathVariable("codigo") long codigo, EntradaMaterial entradamaterial) {
 		Produto produto = er.findByCodigo(codigo);
 		entradamaterial.setProduto(produto);
