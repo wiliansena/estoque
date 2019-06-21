@@ -1,21 +1,153 @@
-<html xmlns:th="http://thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-<title>Estoque FJN</title>
-<!--Import Google Icon Font-->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet" />
-<!--Import materialize.css-->
-<link type="text/css" rel="stylesheet"
-	href="materialize/css/materialize.min.css" media="screen,projection" />
+<html
+  xmlns:th="http://thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+  <head>
+    <title>Estoque FJN</title>
+    <!--Import Google Icon Font-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!--Import materialize.css-->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="materialize/css/materialize.min.css"
+      media="screen,projection"
+	/>
+	
+	
 
-<!--Let browser know website is optimized for mobile-->
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="semantic/dist/semantic.min.css"
+      th:href="@{/semantic/dist/semantic.min.css}"
+    />
+	<link rel="stylesheet" th:href="@{/css/home.css}" />
+	<link rel="stylesheet" th:href="@{/css/produtoList.css}" />
+	<link rel="stylesheet" th:href="@{/css/saidaMaterial.css}" />
+  </head>
+  <body>
+    <header>
+      <div class="ui massive secondary menu" id="nav-principal">
+        <a class="item" href="/">
+          Página Inicial
+        </a>
+        <a class="item" href="/cadastrarProduto">
+          Cadastrar produtos
+        </a>
 
-</head>
-<body>
-	<h1>Produto</h1>
+        <a class="item" href="/produtos">
+          Listar Produtos
+        </a>
+
+        <a class="ui item">
+          Ajuda
+        </a>
+
+        <a class="ui item" href="produtosaida.html">
+          Saida de Produtos
+        </a>
+
+        <div class="right menu">
+          <a class="ui item">
+            Usuário
+          </a>
+        </div>
+      </div>
+    </header>
+    <section id="produtoList">
+      <div class="ui container" th:each="produto: ${produto}">
+        <h1>Produto</h1>
+        <div class="ui big relaxed divided list">
+          <div class="item">
+            <div class="content">
+              <a class="header">CÓDIGO</a>
+              <span class="description" th:text="${produto.codigo}"></span>
+            </div>
+          </div>
+          <div class="item">
+            <div class="content">
+              <a class="header">NOME</a>
+              <span th:text="${produto.nome}"></span>
+            </div>
+          </div>
+          <div class="item">
+            <div class="content">
+              <a class="header">DATA DE CADASTRO</a>
+              <span th:text="${produto.dataCadastro}"></span>
+            </div>
+          </div>
+          <div class="item">
+            <div class="content">
+              <a class="header">OBSERVAÇÃO</a>
+              <span th:text="${produto.observacao}"></span>
+            </div>
+          </div>
+          <div class="item">
+            <div class="content">
+              <a class="header">CATEGORIA</a>
+              <span th:text="${produto.categoria}"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+	</section>
+	
+	<section id="saidaMaterial">
+		<div class="ui container">
+			<h2>Cadastrar Saida de Material</h2>
+           <form class="ui form" method="POST">
+			   
+			   <div class="fields"> 
+                 <div class="three wide field">
+				  <label> Quantidade </label>
+				  <input type="text" name="qtde" />
+				 </div>
+				 <div class="eight wide field">
+					<label> Funcionario Solicitante</label>
+					<input type="text" name="funcionario_solicitante" />
+				</div>
+				  <div class="five wide field">
+						<label> Setor Solicitante</label>
+						<input type="text" name="setor" />
+					</div>
+			   </div>
+			   <button type="submit" class="ui primary button">Saida de Material</button>
+		   </form>
+		</div>
+  </section>
+  <section>
+    <div th:each="saidamaterial: ${saidamaterial}" class="ui container">
+      <h3>Saída Cadastrada</h3>
+      <div class="ui large relaxed divided list">
+          <div class="item">
+              <div class="content">
+                <a class="header">CÓDIGO DA SAIDA</a>
+                <span class="description" th:text="${saidamaterial.codigosaida}" ></span>
+              </div>
+            </div>
+            <div class="item">
+                <div class="content">
+                  <a class="header">Funcionário Solicitante</a>
+                  <span th:text="${saidamaterial.funcionario_solicitante}"></span>
+                </div>
+              </div>
+              <div class="item">
+                  <div class="content">
+                    <a class="header">Setor Solicitante</a>
+                    <span class="description" th:text="${saidamaterial.setor}" ></span>
+                  </div>
+              </div>
+      </div>
+    </div>
+  </section>
+    <!--<h1>Produto</h1>
 	<h3>
 		<a href="/produtosaida" class="waves-effect waves-light btn"><i
 			class="material-icons left">format_list_bulleted</i>Lista de Produtos DAR BAIXA</a>
@@ -40,11 +172,11 @@ Setor Solicitante: <input type="text" value="" name="setor">
 Quantidade: <input type="text" value="" name="qtde">
 <br/>
 <button class="waves-effect waves-light btn" type="submit" >Baixar</button>
-</form>
+</form> 
 	</div>
 	<h2 style="color:FF0000">Lista de Saida de material do Estoque</h2>
 <div class="container" th:each="saidamaterial: ${saidamaterial}" >
- <h3 style="color:0000FF">-->Saida Cadastrada</h3>
+ <h3 style="color:0000FF">Saida Cadastrada</h3>
 	<div class="row">
 		<div class="input-field col s6">
 <p><b>Código da Saida</b> (<span th:text="${saidamaterial.codigosaida}" ></span>)<p/>
@@ -58,8 +190,18 @@ Quantidade: <input type="text" value="" name="qtde">
 <p> <b>Quantidade:</b>  (<span th:text="${saidamaterial.qtde}" ></span>)<p/>
 </div>
 </div>
+-->
 
-	<!--JavaScript at end of body for optimized loading-->
-	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
-</body>
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"
+    ></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+    <!--JavaScript at end of body for optimized loading-->
+    <script
+      type="text/javascript"
+      src="materialize/js/materialize.min.js"
+    ></script>
+  </body>
 </html>
