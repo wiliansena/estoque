@@ -1,7 +1,6 @@
 package br.edu.fjn.estoque.estoque.models;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +26,7 @@ public class Produto implements Serializable {
 	@NotBlank
 	private String nome;
 	
-	private Date dataCadastro;
+	private String dataCadastro;
 	
 	@Size(max=50)
 	private String observacao;
@@ -61,12 +60,11 @@ public class Produto implements Serializable {
 		this.nome = nome;
 	}
 
-	public Date getDataCadastro() {
-		
+	public String getDataCadastro() {
 		return dataCadastro;
 	}
 
-	public void setDataCadastro(Date dataCadastro) {
+	public void setDataCadastro(String dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 
