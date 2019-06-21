@@ -62,6 +62,7 @@ public class Produto implements Serializable {
 	}
 
 	public Date getDataCadastro() {
+		
 		return dataCadastro;
 	}
 
